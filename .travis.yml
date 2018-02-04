@@ -1,0 +1,26 @@
+language: node_js  #设置语言
+
+node_js: stable  #设置相应的版本
+
+
+before_script:
+  - git clone --branch=hexo https://github.com/oneforce/oneforce.github.io.git hexo
+  - cp -r hexo/* .
+  - npm install
+
+script:
+  - hexo cl  #清除
+  - hexo g  #生成
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "yourname"  #修改name
+  - git config user.email "your email"  #修改email
+  - git add .
+  - git commit -m "update"
+  - git push --force --quiet "https://${GITHUB_ACCESS_TOKEN}@$github.com/oneforce/oneforce.github.io" master:master  #GH_TOKEN是在Travis中配置token的名称
+
+branches:
+  only:
+    - blog  #只监测hexo分支，hexo是我的分支的名称，可根据自己情况设置
