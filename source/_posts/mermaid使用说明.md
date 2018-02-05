@@ -96,7 +96,7 @@ grahp TB
   A4–>|text|B4
   A5..-B5
   A6-.->B6
-{% end mermaid %}
+{% endmermaid %}
 
 ```
 grahp TB
@@ -116,7 +116,7 @@ grahp TB
   A10==>B10
   A11==text===B11
   A12==text==>B12
-{% end mermaid %}
+{% endmermaid %}
 
 
 ## 子图(Subgraphs)
