@@ -83,9 +83,9 @@ graph TB
 
 ```
 graph TB
-  A1->B1
-  A2--B2
-  A3--|text|B3
+  A1-->B1
+  A2---B2
+  A3---|text|B3
   A4-->|text|B4
   A5..-B5
   A6-.->B6
@@ -93,9 +93,9 @@ graph TB
 
 {% mermaid %}
 graph TB
-  A1-->B1
-  A2--B2
-  A3--|text|B3
+  A1-->B1
+  A2---B2
+  A3---|text|B3
   A4-->|text|B4
   A5..-B5
   A6-.->B6
@@ -126,30 +126,30 @@ graph TB
 
 ```
 graph TB
-        subgraph one
-        a1 --> a2
-        end
-        subgraph two
-        b2 --> b2
-        end
-        subgraph three
-        c1 --> c2
-        end
-        c1 --> a2
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
 ```
 
 {% mermaid %}
 graph TB
-        subgraph one
-        a1 --> a2
-        end
-        subgraph two
-        b2 --> b2
-        end
-        subgraph three
-        c1 --> c2
-        end
-        c1 --> a2
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
 {% endmermaid %}
 
 ## 基础fontawesome支持
