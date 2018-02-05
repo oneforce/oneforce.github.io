@@ -5,7 +5,7 @@ date: 2018-2-25 14:00:00
 description: mermaid使用说明
 ---
 
-##Graph
+## Graph
 
 关键字graph表示一个流程图的开始，同时需要指定该图的方向。例如
 
@@ -28,7 +28,7 @@ graph LR
 >> * LR（left right）表示从左到右
 
 
-##节点
+## 节点
 
 有以下几种节点和形状：
 
