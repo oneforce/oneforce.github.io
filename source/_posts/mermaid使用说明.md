@@ -2,9 +2,11 @@
 title: mermaid使用说明
 toc: true
 date: 2018-2-25 14:00:00
-description: mermaid使用说明
+description: mermaid使用说明，包含
 categories: 参考文档
 ---
+
+- [ ] 增加hexo的class，这样可以不需要在其他页面中定义class了，可以快速开发 2018-2-28
 
 ## Graph
 
@@ -12,17 +14,17 @@ categories: 参考文档
 
 ```
 graph LR
-    A –> B
+    A --> B
 ```
 
 {% mermaid %}
 graph LR
-    A–>B
+    A --> B
 {% endmermaid %}
 
 流程图的定义仅由graph开始，但是方向的定义不止一种。
 
-> * TB（ top bottom）表示从上到下
+> * TB（top bottom）表示从上到下
 > * BT（bottom top）表示从下到上
 > * RL（right left）表示从右到左
 > * TD与TB一样表示从上到下
@@ -66,10 +68,10 @@ graph TB
 
 节点间的连接线有多种形状，而且可以在连接线中加入标签：
 
-> * 箭头连接 A1–>B1
-> * 开放连接 A2—B2
-> * 标签连接 A3–text—B3 或者 A3—|text|B3
-> * 箭头标签连接 A4–text –>B4 或者 A4–>|text|B4
+> * 箭头连接 A1-->B1
+> * 开放连接 A2--B2
+> * 标签连接 A3--text--B3 或者 A3--|text|B3
+> * 箭头标签连接 A4-text ->B4 或者 A4-->|text|B4
 > * 虚线开放连接 A5.-B5 或者 A5-.-B5 或者 A5..-B5
 > * 虚线箭头连接 A6.->B6 或者 A6-.->B6
 > * 标签虚线连接 A7-.text.-B7
@@ -81,20 +83,20 @@ graph TB
 
 ```
 graph TB
-  A1–>B1
-  A2—B2
-  A3—|text|B3
-  A4–>|text|B4
+  A1->B1
+  A2--B2
+  A3--|text|B3
+  A4-->|text|B4
   A5..-B5
   A6-.->B6
 ```
 
 {% mermaid %}
 graph TB
-  A1–>B1
-  A2—B2
-  A3—|text|B3
-  A4–>|text|B4
+  A1-->B1
+  A2--B2
+  A3--|text|B3
+  A4-->|text|B4
   A5..-B5
   A6-.->B6
 {% endmermaid %}
@@ -140,8 +142,8 @@ graph TB
 graph TB
         subgraph one
         a1 --> a2
-        en
-        subgraph two
+        end
+        subgraph two
         b2 --> b2
         end
         subgraph three
