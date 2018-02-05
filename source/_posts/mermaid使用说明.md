@@ -3,6 +3,7 @@ title: mermaid使用说明
 toc: true
 date: 2018-2-25 14:00:00
 description: mermaid使用说明
+categories: 参考文档
 ---
 
 ## Graph
@@ -16,7 +17,7 @@ graph LR
 
 {% mermaid %}
 graph LR
-    A –> B
+    A–>B
 {% endmermaid %}
 
 流程图的定义仅由graph开始，但是方向的定义不止一种。
@@ -79,7 +80,7 @@ graph TB
 >> * 标签粗线箭头连接 A12==text==>B12
 
 ```
-grahp TB
+graph TB
   A1–>B1
   A2—B2
   A3—|text|B3
@@ -89,7 +90,7 @@ grahp TB
 ```
 
 {% mermaid %}
-grahp TB
+graph TB
   A1–>B1
   A2—B2
   A3—|text|B3
@@ -99,7 +100,7 @@ grahp TB
 {% endmermaid %}
 
 ```
-grahp TB
+graph TB
   A7-.text.-B7
   A8-.text.->B8
   A9===B9
@@ -109,7 +110,7 @@ grahp TB
 ```
 
 {% mermaid %}
-grahp TB
+graph TB
   A7-.text.-B7
   A8-.text.->B8
   A9===B9
@@ -125,7 +126,7 @@ grahp TB
 graph TB
         subgraph one
         a1 --> a2
-        en
+        end
         subgraph two
         b2 --> b2
         end
