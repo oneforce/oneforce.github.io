@@ -3,6 +3,7 @@ title: GitHub Flavored Markdown说明文档(GFM)
 date: 2018-2-25 13:50:00
 comments: false
 categories: 参考文档
+description: GYM使用说明，这个不是特别好，后续找到好点的，更新掉
 ---
 
 * [GFM](http://www.renmaomin.com/gfm-doc/index.html)
@@ -27,4 +28,3 @@ categories: 参考文档
 * [GFM与SM的不同](http://www.renmaomin.com/gfm-doc/diffent.html)
 * [结束语](http://www.renmaomin.com/gfm-doc/end.html)
 * [参考文献](http://www.renmaomin.com/gfm-doc/relation/index.html)
-
