@@ -1,5 +1,6 @@
 ---
 title: mermaid example
+toc: true
 ---
 
 测试
