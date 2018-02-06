@@ -3,7 +3,7 @@ disqus: #oneforce-github-io ## Your disqus_shortname, e.g. username
 gitment:
   enable: true ## If you want to use Gitment comment system please set the value to true.
   owner: oneforce ## Your GitHub ID, e.g. username
-  repo: oneforce.github.io ## The repository to store your comments, make sure you're the repo's owner, e.g. imsun.github.io
+  repo: oneforce/oneforce.github.io ## The repository to store your comments, make sure you're the repo's owner, e.g. imsun.github.io
   client_id: 8b91cea5f6a11eb9a6c3 ## GitHub client ID, e.g. 75752dafe7907a897619
   client_secret: 7ba32180072340307a3fbeb77249dacd19cdabba ## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50
 uyan: ## Your uyan_id. e.g. 1234567
