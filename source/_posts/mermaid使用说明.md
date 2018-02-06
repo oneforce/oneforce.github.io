@@ -6,7 +6,7 @@ description: mermaid使用说明，包含了基本的图片/线段/甘特图/活
 categories: 参考文档
 ---
 
-- [ ] 增加hexo的class，这样可以不需要在其他页面中定义class了，可以快速开发 2018-2-28
+[mermaid editor](https://mermaidjs.github.io/mermaid-live-editor/)
 
 ## Graph
 
@@ -260,8 +260,8 @@ merge newbranch
 gitGraph:
 options
 {
-    "nodeSpacing": 150,
-    "nodeRadius": 10
+    "nodeSpacing": 50,
+    "nodeRadius": 20
 }
 end
 commit
