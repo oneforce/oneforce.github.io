@@ -32,8 +32,8 @@ comments:	开启文章的评论功能	true
 
 评论区我最后选定了disqus，下面是我不使用其他的原因 
 
-* ~~畅言 收集用户手机/微博/微信~~
-* ~~gitment:默认依赖https://gh-oauth.imsun.net，替换需要一个独立的后台服务，用来支持github oauth~~
+* ~~畅言~~: 收集用户手机/微博/微信~~
+* ~~gitment~~: 默认依赖 https://gh-oauth.imsun.net ，替换需要一个独立的后台服务，用来支持github oauth
 * ~~ghost~~: ghost需要后台服务，或者托管在ghost的服务器上，和我的想法不太一样，我希望是
 
 
