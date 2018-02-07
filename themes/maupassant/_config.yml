@@ -47,8 +47,7 @@ donate:
   btc_qr: ## Path of Bitcoin QRcode image, e.g. /img/BTCQR.png
   btc_key: ## Bitcoin key, e.g. 1KuK5eK2BLsqpsFVXXSBG5wbSAwZVadt6L
   paypal_url: ## Paypal URL, e.g. https://paypal.me/tufu9441
-travis-ci:
-  https://travis-ci.org/oneforce/oneforce.github.io.svg?branch=blog
+travis-ci: https://travis-ci.org/oneforce/oneforce.github.io.svg?branch=blog
 
 menu:
   - page: home
