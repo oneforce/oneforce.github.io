@@ -1,6 +1,6 @@
 ---
 title: GitHub Flavored Markdown说明文档(GFM)
-date: 2018-2-25 13:50:00
+date: 2018-2-5 13:50:00
 comments: false
 categories: 参考文档
 description: GYM使用说明，这个不是特别好，后续找到好点的，更新掉

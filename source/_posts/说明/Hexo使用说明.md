@@ -1,9 +1,10 @@
 ---
 title: Hexo使用说明
-date: 2018-2-25 13:00:00
+date: 2018-2-5 13:00:00
 description: hexo、maupassant的使用说明
 ---
 
+> 本文未完成，有内容需要补充上。
 
 ### 文章相关内容
 

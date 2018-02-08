@@ -1,7 +1,7 @@
 ---
 title: mermaid使用说明
 toc: true
-date: 2018-2-25 14:00:00
+date: 2018-2-5 14:00:00
 description: mermaid使用说明，包含了基本的图片/线段/甘特图/活动图/类图的实现。
 categories: 参考文档
 ---
