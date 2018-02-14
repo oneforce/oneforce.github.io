@@ -6,6 +6,7 @@ before_script:
   - rm -rf hexo
   - git clone --branch=hexo https://github.com/oneforce/oneforce.github.io.git hexo
   - cp -r hexo/* .
+  - find . -type f -name "*.md"|xargs grep  -E '^finish(ed)?: *false$' 2>/dev/null | awk -F ":" '{print $1}'|xargs rm
   - npm install
 
 script:
