@@ -6,6 +6,7 @@ before_script:
   - rm -rf hexo
   - git clone --branch=hexo https://github.com/oneforce/oneforce.github.io.git hexo
   - cp -r hexo/* .
+  - sh remove_unfinished_post.sh
   - npm install
 
 script:
