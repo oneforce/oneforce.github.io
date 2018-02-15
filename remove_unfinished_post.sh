@@ -1,1 +1,3 @@
-find source/ -type f -name "*.md" -print0|xargs -0 grep  -E '^finish(ed)?: *false$'  | awk -F ":" '{print $1}'|  sed 's/ /\\ /g'| xargs rm 2>/dev/null
+#!/bin/bash
+
+find source/ -type f -print0 |while read -d $'\0' file; do if grep -E '^finish(ed)?: *false$' "$file"; then echo $file": 未完成编写";rm --f $file; fi; done
