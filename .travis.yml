@@ -6,7 +6,6 @@ before_script:
   - rm -rf hexo
   - git clone --branch=hexo https://github.com/oneforce/oneforce.github.io.git hexo
   - cp -r hexo/* .
-  - find source/ -type f -print0|xargs -0 grep  -E '^finish(ed)?: ? ? ? ? ? ?false$'  | awk -F ":" '{print $1}'|  sed 's/ /\\ /g'| xargs rm
   - npm install
 
 script:
