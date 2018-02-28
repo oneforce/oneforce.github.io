@@ -1,8 +1,8 @@
 ---
-title: <<Spring Boot 2> 8 Introducing Spring Boot.md
+title: <<Spring Boot 2>> 8 Introducing Spring Boot.md
 date:	2018-2-28 22:44:00
 categories:	SpringBoot2
-tags: [springboot,原则
+tags: [springboot,原则]
 toc: false
 comments:	false
 ---
