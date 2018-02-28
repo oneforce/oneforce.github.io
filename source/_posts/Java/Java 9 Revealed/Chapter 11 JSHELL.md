@@ -1,8 +1,9 @@
 ---
-title: Java Revealed: JShell
+title: Java Revealed Chapter JShell
 description: 转载其他人对于Jshell的翻译
 date: 2018-2-8 19:00:00
 tags:	[Java9,jshell]
+category: Java Revealed
 toc: true
 comments: false
 ---
