@@ -3182,7 +3182,7 @@ U    Makefile
 --- Recording mergeinfo for merge of r341 through r351 into '.':
  U   .
  $
- ```
+```
 
 命令 svn merge URL 告诉 Subversion 把 URL 上的所有未被合并 的修改都合并到当前工作副本上 (在典型的情况下, 也就是你的工作副本的 根目录). 注意到我们用的是带有脱字符 (^) 的语法 [30], 这样我们 就不用输入完整的主干 URL 地址. 还要注意输出信息中的 “ Recording mergeinfo for merge…”, 这是说合并正在 更新属性 svn:mergeinfo, 我们会在本章后面的 the section called “合并信息和预览” 介绍 svn:mergeinfo.
 
