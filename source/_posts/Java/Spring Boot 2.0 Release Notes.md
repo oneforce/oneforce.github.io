@@ -1,4 +1,12 @@
-
+---
+title: Spring Boot 2 Release Notes
+description: 这个文章是我翻译的第一篇文章，累死我了。但是翻译完成后还是满满的自豪感。下次在为大家翻译spring boot2.0 吧
+date: 2018-3-5 19:00:00
+tags:	[spring,spring boot]
+toc: true
+finished: true
+comments: true
+---
 
 [英文地址](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Release-Notes)
 
@@ -117,11 +125,142 @@ The @DurationUnit annotation ensures back-compatibility by setting the unit that
 
 Spring boot的Gradle插件已经大量重写，以实现许多重大改进。你可以通过[reference](https://docs.spring.io/spring-boot/docs/2.0.x-SNAPSHOT/gradle-plugin/reference/)和[API](https://docs.spring.io/spring-boot/docs/2.0.0.BUILD-SNAPSHOT/gradle-plugin/api/)文档来了解过多的插件功能
 
-### 
+### Kotlin
 
+此处不翻译了，用不到：）
 
+Spring Boot 2.0 now includes support for Kotlin 1.2.x and offers a runApplication function which provides a way to run a Spring Boot application using idiomatic Kotlin. We also expose and leverage the Kotlin support that other Spring projects such as Spring Framework, Spring Data, and Reactor have added to their recent releases.
 
+For more information, refer to the [Kotlin support section of the reference documentation](https://docs.spring.io/spring-boot/docs/2.0.x-SNAPSHOT/reference/htmlsingle/#boot-features-kotlin).
 
+### Actuator Improvements
+
+Spring boot2.0 中有许多对actuator endpoints的增强和改进。所有的http actuator endpoints都曝露在`/actuator`，而且结果JSON被改进了。
+
+我们不再默认曝露需要actuator endpoint。如果你正在升级spring boot1.5，请查看升级指南并需要特别关注`management.endpoints.web.exposure.include`属性。
+
+#### Jersey and WebFlux Support
+
+除了Spring MVC和JMX支持，在开发Jersey或者reactivet时你可以访问actuator endpoint。Jersey通过jersey `Resource`提供，WebFlux通过自定义`HandlerMapping`。
+
+#### Hypermedia links
+
+`/actuator`提供了HAL格式的response来访问所有激活的endpoints（即便在classpath中没有spring HATEOAS）。
+
+#### Actuator @Endpoints
+
+为了支持 Spring MVC, JMX, WebFlux and Jersey，我们开发了一个新的actautor endpoint程序模型。**The @Endpoint annotation can be used in combination with @ReadOperation, @WriteOperation and @DeleteOperation to develop endpoints in a technology agnostic way.**
+
+你也可以用` @EndpointWebExtension`或者`@EndpointJmxExtension`来写特定的endpoints。
+
+#### Micrometer
+
+spring boot2.0 不在附带自己的metricx API了。我们依靠[micrometer.io](https://micrometer.io/)来提供所有的应用监控支持。
+
+Micrometer提供标准的metrics
+
+在spring boot2.0中，开箱即用的可以将Metrics导入到各个其他系统，如： Atlas, Datadog, Ganglia, Graphite, Influx, JMX, New Relic, Prometheus, SignalFx, StatsD和Wavefront。另外还可以使用简单的内存中metrics。
+
+JVM metrics(GC/cpu/thread/memory),logback,tomcat,spring mvc,`RestTemplate`提供了集成支持。
+
+### 数据支持
+
+除了上面提到的`reactive spring data`，在数据领域已经做了其他一些更新和改进。
+
+#### HikariCP
+
+在Spring boot2.0 中，默认的数据库连接池已经用HikariCP提换了tomcat pool。我们发现HikariCP提供了更好的性能，而且你们更喜欢用它。
+
+#### Initialization
+
+数据库初始化逻辑在Spring Boot 2.0中已经rationalized。Spring Batch/Spring Integration/Spring Session/Quartz仅在使用内置数据库时启动初始化。`enable`属性被enum替代了。例如，你想总是执行Spring batch的初始化，你可以设置`spring.batch.initialize-schema=always`
+
+如果你使用flyway或者Liquibase，你来管理你的数据库，而且你正在使用内存数据库，spring boot2.0 会自动切换到Hibernate的自动DDL。
+
+#### JOOQ
+
+不使用，不翻译了
+
+Spring Boot 2.0 now detects the jOOQ dialect automatically based on the DataSource (similarly to what is done for the JPA dialect). A new @JooqTest annotation has also been introduced to ease testing where only jOOQ has to be used.
+
+#### JdbcTemplate
+
+Spring Boot自动配置的JdbcTemplate现在可以通过`spring.jdbc.template`属性进行自定义。此外，`NamedParameterJdbcTemplate`背后也重用了JdbcTemplate。
+
+#### Spring Data Web Configuration
+
+Spring boot提供了新的配置组`spring.data.web`来控制自定义的分页和排序
+
+#### Influx DB
+
+Spring Boot now auto-configures the open-source time series database InfluxDB. To enable InfluxDB support you need to set a spring.influx.url property, and include influxdb-java on your classpath.
+
+#### Flyway/Liquibase Flexible Configuration
+
+如果提供了`url`或者`user`配置，flyway和Liquibase的自动化配置管理将重新使用数据而不是无视它，这使您可以创建一个自定义的数据源，仅用于所需信息的迁移。
+
+#### Hibernate
+
+现在支持自定义Hibernate命名策略。对于高级场景，您现在可以定义ImplicitNamingStrategy或PhysicalNamingStrategy以在上下文中用作常规bean。
+
+现在也可以通过公开HibernatePropertiesCustomizer bean，以更精细的方式定制Hibernate使用的属性。
+
+#### MongoDB Client Customization
+
+现在可以通过定义MongoClientSettingsBuilderCustomizer类型的bean来将高级定制应用于Spring Boot自动配置的Mongo客户端。
+
+#### Redis
+
+可以通过`spring.cache.redis.*`来配置 redis cache的默认属性.
+
+### Web
+
+#### Context Path Logging
+
+当使用内置服务器时，content path 将和http port一起输出到日志中。
+
+#### Web Filter Initialization
+
+WEB filter 将在支持的容器上尽早的初始化。
+
+#### Thymeleaf
+
+`Thymeleaf starter`现在包括提供对javax.time类型支持的thymeleaf-extras-java8time。
+
+#### JSON Support
+
+新的`spring-boot-starter-json`收集了必要JSON读写工具。它不仅提供`jackson-databind`,也提供一些在Java8 下工作的模块：`jackson-datatype-jdk8`, `jackson-datatype-jsr310` and `jackson-module-parameter-names`.这个新的启动器现在被用在jackson-databind之前定义的地方。
+
+如果你更喜欢Jackson以外的东西,我们在spring boot2.0 中也提供GSON.我们还引入了对JSON-B的支持(包含JSON-B测试的支持)
+
+### Quartz
+
+Quartz Scheduler现在提供了自动化配置。我们也增加了`spring-boot-starter-quartz`
+
+你可以使用内存的JobStores，也使用使用基于数据库的JobStores。Spring应用程序中的所有JobDetail，Calendar和Trigger bean将自动注册到Scheduler中。
+
+### Testing
+
+对Spring Boot 2.0中提供的测试支持进行了一些补充和调整：
+
+* 已添加新的@WebFluxTest注释以支持WebFlux应用程序的“切片”测试。
+* 现在使用@WebMvcTest和@WebFluxTest自动扫描Converter和GenericConverter bean。
+* @AutoConfigureWebTestClient注解以提供WebTestClient bean以供测试使用
+* 新增了一个ApplicationContextRunner测试实用程序，这使得测试自动配置变得非常简单。我们已将大部分内部测试套件移至此新模型。
+
+### Miscellaneous
+
+* 当确定条件是否满足时，@ConditionalOnBean现在使用逻辑AND而不是逻辑OR。
+* 无条件类现在包含在自动配置报告中
+* spring CLI应用程序现在包含一个可用于创建Spring Security兼容哈希密码的encodepassword命令。
+* 计划任务（即@EnableScheduling）可以使用actuator endpoint进行审查。
+* Loggers endpoints现在允许您将日志级别重置为默认值。
+* Spring Session用户现在可以通过actuator endpoints查找和删除会话。
+* 使用spring-boot-starter-parent的基于Maven的应用程序现在默认使用-parameters标志
+
+### Animated ASCII Art
+
+![](https://github.com/spring-projects/spring-boot/wiki/images/animated-ascii-art.gif)
 
 
 
