@@ -1,6 +1,6 @@
 ---
 title: Java字节码的介绍
-description: 这个我计划分为几个部分一起来说明下JAVA的SPI机制。
+description: java 字节码的说明，提供了初步解读字节码的方式。是java字节码编程入门知识，后续
 date: 2018-5-2 9:00:00
 tags:	[入门系列]
 toc: true
@@ -147,3 +147,234 @@ iload_2:从索引2的本地变量中加载一个int值，放入操作数栈。
 iadd:把操作数栈中的前两个int值出栈并相加，将相加的结果放入操作数栈。
 
 ![](http://blog.oneforce.cn/images/20180502/step7.png)
+
+istore_3:在索引为3的位置将第一个操作数出栈并且将其存进本地变量，相当于变量c。
+
+![](http://blog.oneforce.cn/images/20180502/step8.png)
+
+return:从这个void方法中返回。
+
+上述指令只包含操作码，由JVM来精确执行。
+
+### 方法调用
+
+上面的示例只有一个方法，即 main 方法。假如我们需要对变量 c 进行更复杂的计算，这些复杂的计算写在新方法 calc 中：
+
+```java
+public static void main(String[] args) {
+    int a = 1;
+    int b = 2;
+    int c = calc(a, b);
+}
+static int calc(int a, int b) {
+    return (int) Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+}
+```
+
+看看生成的字节码：
+
+```
+public static void main(java.lang.String[]);
+  descriptor: ([Ljava/lang/String;)V
+  flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+  Code:
+    stack=2, locals=4, args_size=1
+       0: iconst_1
+       1: istore_1
+       2: iconst_2
+       3: istore_2
+       4: iload_1
+       5: iload_2
+       6: invokestatic  #2         // Method calc:(II)I
+       9: istore_3
+      10: return
+static int calc(int, int);
+  descriptor: (II)I
+  flags: (0x0008) ACC_STATIC
+  Code:
+    stack=6, locals=2, args_size=2
+       0: iload_0
+       1: i2d
+       2: ldc2_w        #3         // double 2.0d
+       5: invokestatic  #5         // Method java/lang/Math.pow:(DD)D
+       8: iload_1
+       9: i2d
+      10: ldc2_w        #3         // double 2.0d
+      13: invokestatic  #5         // Method java/lang/Math.pow:(DD)D
+      16: dadd
+      17: invokestatic  #6         // Method java/lang/Math.sqrt:(D)D
+      20: d2i
+      21: ireturn
+```
+
+main 方法代码唯一的不同在于用 invokestatic 指令代替了 iadd 指令，invokestatic 指令用于调用静态方法 calc。注意，关键在于操作数栈中传递给 calc 方法的两个参数。也就是说，调用方法需要按正确的顺序为被调用方法准备好所有参数，交依次推入操作数栈。iinvokestatic（还有后面提到的其它类似的调用指令）随后会从栈中取出这些参数，然后为被调用方法创建一个新的环境，将参数作为局域变量置于其中。
+
+我们也注意到invokestatic指令在地址上看占据了3字节，由6跳转到9。不像其余指令那样那么远，这是因为invokestatic指令包含了两个额外的字节来构造要调用的方法的引用（除了opcode外）。这引用由javap显示为#2，是一个引用calc方法的符号，解析于从前面描述的常量池中。
+
+其它的新信息显然是calc方法本身的代码。它首先将第一个整数参数加载到操作数堆栈上（iload_0）。下一条指令，i2d，通过应用扩展转换将其转换为double类型。由此产生的double类型取代了操作数堆栈的顶部。
+
+再下一条指令将一个double类型常量2.0d(从常量池中取出)推到操作数堆栈上。然后静态方法Math.pow调用目前为止准备好的两个操作数值（第一个参数是calc和常量2.0d）。当Math.pow方法返回时，他的结果将会被存储在其调用程序的操作数堆栈上。在下面说明。
+
+
+![](http://blog.oneforce.cn/images/20180502/step10.png)
+
+同样的程序应用于计算Math.pow(b,2):
+
+下一条指令，dadd，会将栈顶的两个中间结果出栈，将它们相加，并将所得之和推入栈顶。最后，invokestatic 对这个和值调用 Math.sqrt，将结果从 double（双精度浮点型） 窄化转换（d2i）成 int（整型）。整型结果会返回到 main 方法中， 并在这里保存到 c（istore_3）。
+
+### 创建实例
+
+现在修改这个示例，加入 Point 类来封装 XY 坐标。
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        Point a = new Point(1, 1);
+        Point b = new Point(5, 3);
+        int c = a.area(b);
+    }
+}
+class Point {
+    int x, y;
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    public int area(Point b) {
+        int length = Math.abs(b.y - this.y);
+        int width = Math.abs(b.x - this.x);
+        return length * width;
+    }
+}
+```
+
+编译后的 main 方法的字体码如下：
+
+```
+public static void main(java.lang.String[]);
+  descriptor: ([Ljava/lang/String;)V
+  flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+  Code:
+    stack=4, locals=4, args_size=1
+       0: new           #2       // class test/Point
+       3: dup
+       4: iconst_1
+       5: iconst_1
+       6: invokespecial #3       // Method test/Point."<init>":(II)V
+       9: astore_1
+      10: new           #2       // class test/Point
+      13: dup
+      14: iconst_5
+      15: iconst_3
+      16: invokespecial #3       // Method test/Point."<init>":(II)V
+      19: astore_2
+      20: aload_1
+      21: aload_2
+      22: invokevirtual #4       // Method test/Point.area:(Ltest/Point;)I
+      25: istore_3
+      26: return
+```
+
+这里引入了 new、dup 和 invokespecial 几个新指令。new 指令与编程语言中的 new 运算符类似，它根据传入的操作数所指定类型来创建对象（这是对 Point 类的符号引用）。对象的内存是在堆上分配，对象引用则是被推入到操作数栈上。
+
+dup指令会复制顶部操作数的栈值，这意味着现在我们在栈顶部有两个指向Point对象的引用。接下来的三条指令将构造函数的参数（用于初始化对象）压入操作数堆栈中，然后调用与构造函数对应的特殊初始化方法。下一个方法中x和y字段将被初始化。该方法完成之后，前三个操作数的栈值将被销毁，剩下的就是已创建对象的原始引用（到目前为止，已成功完成初始化了）。
+
+接下来，astore_1将该Point引用出栈，并将其赋值到索引1所保存的本地变量(astore_1中的a表明这是一个引用值).
+
+
+![](http://blog.oneforce.cn/images/20180502/step20.png)
+
+通用的过程会被重复执行以创建并初始化第二个Point实例，此实例会被赋值给变量b。
+
+![](http://blog.oneforce.cn/images/20180502/step21.png)
+
+
+![](http://blog.oneforce.cn/images/20180502/step22.png)
+
+最后一步是将本地变量中的两个Point对象的引用加载到索引1和2中（分别使用aload_1和aload_2），并使用invokevirtual调用area方法，该方法会根据实际的类型来调用适当的方法来完成分发。例如，如果变量a包含一个扩展自Point类的SpecialPoint实例，并且该子类重写了area方法，则重写后的方法会被调用。在这种情况下，并不存在子类，因此仅有area方法是可用的。
+
+![](http://blog.oneforce.cn/images/20180502/step23.png)
+
+请注意，即使area方法接受单参数，堆栈顶部也有两个Point的引用。第一个（pointA，来自变量a）实际上是调用该方法的实例（在编程语言中被称为this），对area方法来说，它将被传递到新栈帧的第一个局部变量中。另一个操作数（pointB）是area方法的参数。
+
+### 另一种方式
+
+你无需对每条指令的理解和执行的准确流程完全掌握，以根据手头的字节码了解程序的功能。例如，就我而言，我想检查代码是否驱动Java stream来读取文件，以及流是否被正确地关闭。现在以下面的字节码为例，确认以下情况是很简单的：一个流是否被使用并且很有可能是作为try-with-resources语句的一部分被关闭的。
+
+
+```
+public static void main(java.lang.String[]) throws java.lang.Exception;
+ descriptor: ([Ljava/lang/String;)V
+ flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+ Code:
+   stack=2, locals=8, args_size=1
+      0: ldc           #2                  // class test/Test
+      2: ldc           #3                  // String input.txt
+      4: invokevirtual #4                  // Method java/lang/Class.getResource:(Ljava/lang/String;)Ljava/net/URL;
+      7: invokevirtual #5                  // Method java/net/URL.toURI:()Ljava/net/URI;
+     10: invokestatic  #6                  // Method java/nio/file/Paths.get:(Ljava/net/URI;)Ljava/nio/file/Path;
+     13: astore_1
+     14: new           #7                  // class java/lang/StringBuilder
+     17: dup
+     18: invokespecial #8                  // Method java/lang/StringBuilder."<init>":()V
+     21: astore_2
+     22: aload_1
+     23: invokestatic  #9                  // Method java/nio/file/Files.lines:(Ljava/nio/file/Path;)Ljava/util/stream/Stream;
+     26: astore_3
+     27: aconst_null
+     28: astore        4
+     30: aload_3
+     31: aload_2
+     32: invokedynamic #10,  0             // InvokeDynamic #0:accept:(Ljava/lang/StringBuilder;)Ljava/util/function/Consumer;
+     37: invokeinterface #11,  2           // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+     42: aload_3
+     43: ifnull        131
+     46: aload         4
+     48: ifnull        72
+     51: aload_3
+     52: invokeinterface #12,  1           // InterfaceMethod java/util/stream/Stream.close:()V
+     57: goto          131
+     60: astore        5
+     62: aload         4
+     64: aload         5
+     66: invokevirtual #14                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+     69: goto          131
+     72: aload_3
+     73: invokeinterface #12,  1           // InterfaceMethod java/util/stream/Stream.close:()V
+     78: goto          131
+     81: astore        5
+     83: aload         5
+     85: astore        4
+     87: aload         5
+     89: athrow
+     90: astore        6
+     92: aload_3
+     93: ifnull        128
+     96: aload         4
+     98: ifnull        122
+    101: aload_3
+    102: invokeinterface #12,  1           // InterfaceMethod java/util/stream/Stream.close:()V
+    107: goto          128
+    110: astore        7
+    112: aload         4
+    114: aload         7
+    116: invokevirtual #14                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+    119: goto          128
+    122: aload_3
+    123: invokeinterface #12,  1           // InterfaceMethod java/util/stream/Stream.close:()V
+    128: aload         6
+    130: athrow
+    131: getstatic     #15                 // Field java/lang/System.out:Ljava/io/PrintStream;
+    134: aload_2
+    135: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+    138: invokevirtual #17                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+    141: return
+   ...
+```
+
+
+可以看到java/util/stream/Stream执行forEach之前，首先触发InvokeDynamic以引用Consumer。与此同时会发现大量调用Stream.close与Throwable.addSuppressed的字节码，这是编译器实现[try-with-resources statement](https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20.3.1)的基本代码。这是完整的原始代码。
+
+## 总结
+
+还好字节码指令集简洁，生成指令时几乎少有的编译器优化，反编译类文件可以在没有源码的情况下检查代码，当然如没有源码这也是一种需求！
