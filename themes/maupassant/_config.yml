@@ -68,7 +68,7 @@ widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts
   - tag
   - recent_posts
   - recent_comments
-  - build_status
+#  - build_status
 #  - links
 
 links:
