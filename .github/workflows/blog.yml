@@ -57,13 +57,13 @@ jobs:
           npx hexo cl
           npx hexo g
 
-    - name: push to origin master
-      run: |
-        echo start push
-        # cd ./public
-        # git config user.name "yourname"
-        # git config user.email "your email"
-        # git add .
-        # git commit -m "update"
-        # git push
-        # git push --force --quiet "https://${{secrets.BLOG_GITHUB_TOKEN}}@github.com/oneforce/oneforce.github.io.git" master:master
+      - name: push to origin master
+        run: |
+          echo start push
+          cd ./public
+          git config user.name "yourname"
+          git config user.email "your email"
+          git add .
+          git commit -m "update"
+          git push
+          git push --force --quiet "https://${{secrets.BLOG_GITHUB_TOKEN}}@github.com/oneforce/oneforce.github.io.git" master:master
