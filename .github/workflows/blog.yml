@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - blog
-env:
-  GIT_USER: caoyanfei
-  GIT_EMAIL: github@uyhnm.cn
-  DEPLOY_REPO: sanonz/sanonz.github.io
-  DEPLOY_BRANCH: master
-  HEXO_BRANCH: hexo
+# env:
+#   GIT_USER: caoyanfei
+#   GIT_EMAIL: github@uyhnm.cn
+#   DEPLOY_REPO: sanonz/sanonz.github.io
+#   DEPLOY_BRANCH: master
+#   HEXO_BRANCH: hexo
 jobs:
   build:
     name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
@@ -28,18 +28,17 @@ jobs:
       - name: Checkout hexo repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ env.HEXO_BRANCH }}
-          ref: ${{ env.HEXO_BRANCH }}
+          ref: hexo
           path: hexo
         run: |
           cp -r hexo/* .
 
-      - name: Checkout deploy repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ env.DEPLOY_REPO }}
-          ref: ${{ env.DEPLOY_BRANCH }}
-          path: .deploy_git
+      # - name: Checkout deploy repo
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: ${{ env.DEPLOY_REPO }}
+      #     ref: ${{ env.DEPLOY_BRANCH }}
+      #     path: .deploy_git
 
       - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
