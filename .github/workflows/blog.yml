@@ -20,6 +20,8 @@ jobs:
           repository: oneforce/oneforce.github.io
           ref: hexo
           path: hexo
+          
+      - name: copy hexo file
         run: |
           cp -r hexo/* .
 
