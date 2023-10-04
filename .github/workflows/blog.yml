@@ -55,8 +55,8 @@ jobs:
           echo start push
           cd ./public
           git config --global init.defaultBranch master
-          git config user.name "yourname"
-          git config user.email "your email"
+          git config --global user.name "caoyanfei"
+          git config --global user.email "github@uynm.cn"
           git init .
           git add .
           git commit -m "update"
