@@ -21,6 +21,13 @@ jobs:
           ref: hexo
           path: hexo
 
+      - name: Checkout hexo repo
+        uses: actions/checkout@v2
+        with:
+          repository: oneforce/oneforce.github.io
+          ref: master
+          path: ./public
+
       - name: copy hexo file
         run: |
           cp -r hexo/* .
@@ -54,9 +61,9 @@ jobs:
       run: |
         echo start push
         cd ./public
-        git init
         git config user.name "yourname"
         git config user.email "your email"
         git add .
         git commit -m "update"
-        git push --force --quiet "https://${{ secrets.BLOG_GITHUB_TOKEN }}@github.com/oneforce/oneforce.github.io.git" master:master
+        git push
+        # git push --force --quiet "https://${{secrets.BLOG_GITHUB_TOKEN}}@github.com/oneforce/oneforce.github.io.git" master:master
