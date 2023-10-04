@@ -47,9 +47,8 @@ jobs:
 
       - name: Hexo generate
         run: |
-          npm install -g hexo
-          hexo cl
-          hexo g
+          npx hexo cl
+          npx hexo g
 
     # - name: push to origin master
     #   run: |
