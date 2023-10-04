@@ -4,66 +4,56 @@ on:
   push:
     branches:
       - blog
-# env:
-#   GIT_USER: caoyanfei
-#   GIT_EMAIL: github@uyhnm.cn
-#   DEPLOY_REPO: sanonz/sanonz.github.io
-#   DEPLOY_BRANCH: master
-#   HEXO_BRANCH: hexo
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node_version: [12.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Checkout hexo repo
-        uses: actions/checkout@v2
-        with:
-          ref: hexo
-          path: hexo
-        run: |
-          cp -r hexo/* .
+    #   - name: Checkout hexo repo
+    #     uses: actions/checkout@v2
+    #     with:
+    #       ref: hexo
+    #       path: hexo
+    #     run: |
+    #       cp -r hexo/* .
 
-      # - name: Checkout deploy repo
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: ${{ env.DEPLOY_REPO }}
-      #     ref: ${{ env.DEPLOY_BRANCH }}
-      #     path: .deploy_git
+    #   # - name: Checkout deploy repo
+    #   #   uses: actions/checkout@v2
+    #   #   with:
+    #   #     repository: ${{ env.DEPLOY_REPO }}
+    #   #     ref: ${{ env.DEPLOY_BRANCH }}
+    #   #     path: .deploy_git
 
-      - name: Use Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node_version }}
+    #   - name: Use Node.js ${{ matrix.node_version }}
+    #     uses: actions/setup-node@v1
+    #     with:
+    #       node-version: ${{ matrix.node_version }}
 
-      - name: Configuration environment
-        run: |
-          sudo timedatectl set-timezone "Asia/Shanghai"
+    #   - name: Configuration environment
+    #     run: |
+    #       sudo timedatectl set-timezone "Asia/Shanghai"
 
-      - name: Install dependencies
-        run: |
-          npm install
+    #   - name: Install dependencies
+    #     run: |
+    #       npm install
 
-      - name: Hexo generate
-        run: |
-          hexo cl
-          hexo g
+    #   - name: Hexo generate
+    #     run: |
+    #       hexo cl
+    #       hexo g
 
-    - name: push to origin master
-      run: |
-        echo start push
-        cd ./public
-        git init
-        git config user.name "yourname"
-        git config user.email "your email"
-        git add .
-        git commit -m "update"
-        git push --force --quiet "https://${secrets.BLOG_GITHUB_TOKEN}@github.com/oneforce/oneforce.github.io.git" master:master
+    # - name: push to origin master
+    #   run: |
+    #     echo start push
+    #     cd ./public
+    #     git init
+    #     git config user.name "yourname"
+    #     git config user.email "your email"
+    #     git add .
+    #     git commit -m "update"
+    #     git push --force --quiet "https://${secrets.BLOG_GITHUB_TOKEN}@github.com/oneforce/oneforce.github.io.git" master:master
