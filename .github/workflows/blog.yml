@@ -14,13 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-    #   - name: Checkout hexo repo
-    #     uses: actions/checkout@v2
-    #     with:
-    #       ref: hexo
-    #       path: hexo
-    #     run: |
-    #       cp -r hexo/* .
+      - name: Checkout hexo repo
+        uses: actions/checkout@v2
+        with:
+          repository: oneforce/oneforce.github.io
+          ref: hexo
+          path: hexo
+        run: |
+          cp -r hexo/* .
 
     #   # - name: Checkout deploy repo
     #   #   uses: actions/checkout@v2
@@ -29,18 +30,18 @@ jobs:
     #   #     ref: ${{ env.DEPLOY_BRANCH }}
     #   #     path: .deploy_git
 
-    #   - name: Use Node.js ${{ matrix.node_version }}
-    #     uses: actions/setup-node@v1
-    #     with:
-    #       node-version: ${{ matrix.node_version }}
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-    #   - name: Configuration environment
-    #     run: |
-    #       sudo timedatectl set-timezone "Asia/Shanghai"
+      - name: Configuration environment
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
 
-    #   - name: Install dependencies
-    #     run: |
-    #       npm install
+      - name: Install dependencies
+        run: |
+          npm install
 
     #   - name: Hexo generate
     #     run: |
