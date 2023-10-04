@@ -32,13 +32,6 @@ jobs:
         run: |
           cp -r hexo/* .
 
-    #   # - name: Checkout deploy repo
-    #   #   uses: actions/checkout@v2
-    #   #   with:
-    #   #     repository: ${{ env.DEPLOY_REPO }}
-    #   #     ref: ${{ env.DEPLOY_BRANCH }}
-    #   #     path: .deploy_git
-
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -61,10 +54,9 @@ jobs:
         run: |
           echo start push
           cd ./public
-          git init .
           git config user.name "yourname"
           git config user.email "your email"
           git add .
           git commit -m "update"
-          git push
+          # git push
           git push --force --quiet "https://${{secrets.BLOG_GITHUB_TOKEN}}@github.com/oneforce/oneforce.github.io.git" master:master
