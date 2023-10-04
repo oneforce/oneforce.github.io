@@ -61,6 +61,7 @@ jobs:
         run: |
           echo start push
           cd ./public
+          git init .
           git config user.name "yourname"
           git config user.email "your email"
           git add .
