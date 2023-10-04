@@ -4,23 +4,23 @@ on:
   push:
     branches:
       - blog
-
 env:
   GIT_USER: caoyanfei
   GIT_EMAIL: github@uyhnm.cn
   DEPLOY_REPO: sanonz/sanonz.github.io
   DEPLOY_BRANCH: master
   HEXO_BRANCH: hexo
-
 jobs:
   build:
     name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     strategy:
       matrix:
         os: [ubuntu-latest]
         node_version: [12.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
