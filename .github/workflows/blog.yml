@@ -60,4 +60,4 @@ jobs:
         git config user.email "your email"
         git add .
         git commit -m "update"
-        git push --force --quiet "https://${secrets.BLOG_GITHUB_TOKEN}@github.com/oneforce/oneforce.github.io.git" master:master
+        git push --force --quiet "https://${{ secrets.BLOG_GITHUB_TOKEN }}@github.com/oneforce/oneforce.github.io.git" master:master
