@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>mermaid使用说明 | oneforce blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css"><script src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-113549521-1','auto');ga('send','pageview');</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">mermaid使用说明</h1><a id="logo" href="/.">oneforce blog</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">mermaid使用说明</h1><div class="post-meta">Feb 5, 2018<span> | </span><span class="category"><a href="/categories/参考文档/">参考文档</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/02/05/说明/mermaid使用说明/" href="/2018/02/05/说明/mermaid使用说明/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Graph"><span class="toc-text">Graph</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点"><span class="toc-text">节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连线"><span class="toc-text">连线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子图-Subgraphs"><span class="toc-text">子图(Subgraphs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础fontawesome支持"><span class="toc-text">基础fontawesome支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#甘特图-gantt"><span class="toc-text">甘特图(gantt)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-diagram"><span class="toc-text">Class diagram</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-graph"><span class="toc-text">Git graph</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-sequence-diagram"><span class="toc-text">Basic sequence diagram</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-flowchart"><span class="toc-text">Basic flowchart</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Larger-flowchart-with-some-styling"><span class="toc-text">Larger flowchart with some styling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loops-alt-and-opt"><span class="toc-text">Loops, alt and opt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message-to-self-in-loop"><span class="toc-text">Message to self in loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gantt-diagrams"><span class="toc-text">gantt diagrams</span></a></li></ol></div></div><div class="post-content"><p><a href="https://mermaidjs.github.io/mermaid-live-editor/" target="_blank" rel="noopener">mermaid editor</a></p>
+<h2 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h2><p>关键字graph表示一个流程图的开始，同时需要指定该图的方向。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">    A --&gt; B</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph LR
+    A --> B
+</div>
+
+<p>流程图的定义仅由graph开始，但是方向的定义不止一种。</p>
+<blockquote>
+<ul>
+<li>TB（top bottom）表示从上到下</li>
+<li>BT（bottom top）表示从下到上</li>
+<li>RL（right left）表示从右到左</li>
+<li>TD与TB一样表示从上到下</li>
+<li>LR（left right）表示从左到右</li>
+</ul>
+</blockquote>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>有以下几种节点和形状：</p>
+<blockquote>
+<ul>
+<li>默认节点 A</li>
+<li>文本节点 B[bname]</li>
+<li>圆角节点 C(cname)</li>
+<li>圆形节点 D((dname))</li>
+<li>非对称节点 E&gt;ename]</li>
+<li>菱形节点 F{fname}</li>
+</ul>
+</blockquote>
+<p>以上大写字母表示节点，name表示它的名字，如下图。默认节点的A同时表示该节点和它的名字，例如上图的A和B。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">  A</span><br><span class="line">  B[bname]</span><br><span class="line">  C(cname)</span><br><span class="line">  D((dname))</span><br><span class="line">  E&gt;ename]</span><br><span class="line">  F&#123;fname&#125;</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph TB
+  A
+  B[bname]
+  C(cname)
+  D((dname))
+  E>ename]
+  F{fname}
+</div>
+
+<h2 id="连线"><a href="#连线" class="headerlink" title="连线"></a>连线</h2><p>节点间的连接线有多种形状，而且可以在连接线中加入标签：</p>
+<blockquote>
+<ul>
+<li>箭头连接 A1–&gt;B1</li>
+<li>开放连接 A2–B2</li>
+<li>标签连接 A3–text–B3 或者 A3–|text|B3</li>
+<li>箭头标签连接 A4-text -&gt;B4 或者 A4–&gt;|text|B4</li>
+<li>虚线开放连接 A5.-B5 或者 A5-.-B5 或者 A5..-B5</li>
+<li>虚线箭头连接 A6.-&gt;B6 或者 A6-.-&gt;B6</li>
+<li>标签虚线连接 A7-.text.-B7</li>
+<li>标签虚线箭头连接 A8-.text.-&gt;B8</li>
+<li>粗线开放连接 A9===B9</li>
+<li>粗线箭头连接 A10==&gt;B10</li>
+<li>标签粗线开放连接 A11==text===B11</li>
+<li>标签粗线箭头连接 A12==text==&gt;B12</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">  A1--&gt;B1</span><br><span class="line">  A2---B2</span><br><span class="line">  A3---|text|B3</span><br><span class="line">  A4--&gt;|text|B4</span><br><span class="line">  A5..-B5</span><br><span class="line">  A6-.-&gt;B6</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph TB
+  A1-->B1
+  A2---B2
+  A3---|text|B3
+  A4-->|text|B4
+  A5..-B5
+  A6-.->B6
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">  A7-.text.-B7</span><br><span class="line">  A8-.text.-&gt;B8</span><br><span class="line">  A9===B9</span><br><span class="line">  A10==&gt;B10</span><br><span class="line">  A11==text===B11</span><br><span class="line">  A12==text==&gt;B12</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph TB
+  A7-.text.-B7
+  A8-.text.->B8
+  A9===B9
+  A10==>B10
+  A11==text===B11
+  A12==text==>B12
+</div>
+
+<h2 id="子图-Subgraphs"><a href="#子图-Subgraphs" class="headerlink" title="子图(Subgraphs)"></a>子图(Subgraphs)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">    c1--&gt;a2</span><br><span class="line">    subgraph one</span><br><span class="line">    a1--&gt;a2</span><br><span class="line">    end</span><br><span class="line">    subgraph two</span><br><span class="line">    b1--&gt;b2</span><br><span class="line">    end</span><br><span class="line">    subgraph three</span><br><span class="line">    c1--&gt;c2</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+</div>
+
+<h2 id="基础fontawesome支持"><a href="#基础fontawesome支持" class="headerlink" title="基础fontawesome支持"></a>基础fontawesome支持</h2><p>如果想加入来自frontawesome的图表字体,需要像frontawesome网站上那样引用的那样。详情请点击：<a href="https://fontawesome.com/" target="_blank" rel="noopener">fontawdsome</a></p>
+<p>引用的语法为：<code>fa:#icon class name#</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">      B[&quot;fa:fa-twitter for peace&quot;]</span><br><span class="line">      B--&gt;C[fa:fa-ban forbidden]</span><br><span class="line">      B--&gt;D(fa:fa-spinner);</span><br><span class="line">      B--&gt;E(A fa:fa-camerra-retro perhaps?);</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  graph TD
+      B["fa:fa-twitter for peace"]
+      B-->C[fa:fa-ban forbidden]
+      B-->D(fa:fa-spinner);
+      B-->E(A fa:fa-camerra-retro perhaps?);
+</div>
+
+<h2 id="甘特图-gantt"><a href="#甘特图-gantt" class="headerlink" title="甘特图(gantt)"></a>甘特图(gantt)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">section S1</span><br><span class="line">T1: 2014-01-01, 9d</span><br><span class="line">section S2</span><br><span class="line">T2: 2014-01-11, 9d</span><br><span class="line">section S3</span><br><span class="line">T3: 2014-01-02, 9d</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  gantt
+dateFormat YYYY-MM-DD
+section S1
+T1: 2014-01-01, 9d
+section S2
+T2: 2014-01-11, 9d
+section S3
+T3: 2014-01-02, 9d
+</div>
+
+<h2 id="Class-diagram"><a href="#Class-diagram" class="headerlink" title="Class diagram"></a>Class diagram</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">Class01 &lt;|-- AveryLongClass : Cool</span><br><span class="line">Class03 *-- Class04</span><br><span class="line">Class05 o-- Class06</span><br><span class="line">Class07 .. Class08</span><br><span class="line">Class09 --&gt; C2 : Where am i?</span><br><span class="line">Class09 --* C3</span><br><span class="line">Class09 --|&gt; Class07</span><br><span class="line">Class07 : equals()</span><br><span class="line">Class07 : Object[] elementData</span><br><span class="line">Class01 : size()</span><br><span class="line">Class01 : int chimp</span><br><span class="line">Class01 : int gorilla</span><br><span class="line">Class08 &lt;--&gt; C2: Cool label</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  classDiagram
+Class01 <|-- averylongclass : cool class03 *-- class04 class05 o-- class06 class07 .. class08 class09 --> C2 : Where am i?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 <--> C2: Cool label
+</--></|--></div>
+
+<h2 id="Git-graph"><a href="#Git-graph" class="headerlink" title="Git graph"></a>Git graph</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">gitGraph:</span><br><span class="line">options</span><br><span class="line">&#123;</span><br><span class="line">    &quot;nodeSpacing&quot;: 150,</span><br><span class="line">    &quot;nodeRadius&quot;: 10</span><br><span class="line">&#125;</span><br><span class="line">end</span><br><span class="line">commit</span><br><span class="line">branch newbranch</span><br><span class="line">checkout newbranch</span><br><span class="line">commit</span><br><span class="line">commit</span><br><span class="line">checkout master</span><br><span class="line">commit</span><br><span class="line">commit</span><br><span class="line">merge newbranch</span><br></pre></td></tr></table></figure>
+<div class="mermaid">
+  gitGraph:
+options
+{
+    "nodeSpacing": 50,
+    "nodeRadius": 20
+}
+end
+commit
+branch newbranch
+checkout newbranch
+commit
+commit
+checkout master
+commit
+commit
+merge newbranch
+</div>
+
+<h2 id="Basic-sequence-diagram"><a href="#Basic-sequence-diagram" class="headerlink" title="Basic sequence diagram"></a>Basic sequence diagram</h2><div class="mermaid">
+  
+sequenceDiagram
+    Alice ->> Bob: Hello Bob, how are you?
+    Bob-->>John: How about you John?
+    Bob--x Alice: I am good thanks!
+    Bob-x John: I am good thanks!
+    Note right of John: Bob thinks a long<br>long time, so long<br>that the text does<br>not fit on a row.
+
+    Bob-->Alice: Checking with John...
+    Alice->John: Yes... John, how are you?
+</div>
+
+<h2 id="Basic-flowchart"><a href="#Basic-flowchart" class="headerlink" title="Basic flowchart"></a>Basic flowchart</h2><div class="mermaid">
+  graph LR
+    A[Square Rect] -- Link text --> B((Circle))
+    A --> C(Round Rect)
+    B --> D{Rhombus}
+    C --> D
+</div>
+
+<h2 id="Larger-flowchart-with-some-styling"><a href="#Larger-flowchart-with-some-styling" class="headerlink" title="Larger flowchart with some styling"></a>Larger flowchart with some styling</h2><div class="mermaid">
+  graph TB
+    sq[Square shape] --> ci((Circle shape))
+
+    subgraph A subgraph
+        od>Odd shape]-- Two line<br>edge comment --> ro
+        di{Diamond with <br> line break} -.-> ro(Rounded<br>square<br>shape)
+        di==>ro2(Rounded square shape)
+    end
+
+    %% Notice that no text in shape are added here instead that is appended further down
+    e --> od3>Really long text with linebreak<br>in an Odd shape]
+
+    %% Comments after double percent signs
+    e((Inner / circle<br>and some odd <br>special characters)) --> f(,.?!+-\*ز)
+
+    cyr[Cyrillic]-->cyr2((Circle shape Начало));
+
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+     class sq,e green
+     class di orange
+
+</div>
+
+<h2 id="Loops-alt-and-opt"><a href="#Loops-alt-and-opt" class="headerlink" title="Loops, alt and opt"></a>Loops, alt and opt</h2><div class="mermaid">
+  sequenceDiagram
+    loop Daily query
+        Alice->>Bob: Hello Bob, how are you?
+        alt is sick
+            Bob->>Alice: Not so good :(
+        else is well
+            Bob->>Alice: Feeling fresh like a daisy
+        end
+
+        opt Extra response
+            Bob->>Alice: Thanks for asking
+        end
+    end
+</div>
+
+<h2 id="Message-to-self-in-loop"><a href="#Message-to-self-in-loop" class="headerlink" title="Message to self in loop"></a>Message to self in loop</h2><div class="mermaid">
+  sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts<br>prevail...
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+</div>
+
+<h2 id="gantt-diagrams"><a href="#gantt-diagrams" class="headerlink" title="gantt diagrams"></a>gantt diagrams</h2><div class="mermaid">
+  gantt
+       dateFormat  YYYY-MM-DD
+       title Adding GANTT diagram functionality to mermaid
+
+       section A section
+       Completed task            :done,    des1, 2014-01-06,2014-01-08
+       Active task               :active,  des2, 2014-01-09, 3d
+       Future task               :         des3, after des2, 5d
+       Future task2              :         des4, after des3, 5d
+
+       section Critical tasks
+       Completed task in the critical line :crit, done, 2014-01-06,24h
+       Implement parser and jison          :crit, done, after des1, 2d
+       Create tests for parser             :crit, active, 3d
+       Future task in critical line        :crit, 5d
+       Create tests for renderer           :2d
+       Add to mermaid                      :1d
+
+       section Documentation
+       Describe gantt syntax               :active, a1, after des1, 3d
+       Add gantt diagram to demo page      :after a1  , 20h
+       Add another diagram to demo page    :doc1, after a1  , 48h
+
+       section Last section
+       Describe gantt syntax               :after doc1, 3d
+       Add gantt diagram to demo page      :20h
+       Add another diagram to demo page    :48h
+</div>
+
+</div><p class="readmore"><a href="http://blog.oneforce.cn/online-markdown/?path=https://raw.githubusercontent.com/oneforce/oneforce.github.io/blog/source/_posts/说明/mermaid使用说明.md">在微信markdown中展示</a></p><div class="tags"></div><div class="post-nav"><a class="pre" href="/2018/02/05/金融/关于规范整顿“现金贷”业务的通知/">关于规范整顿“现金贷”业务的通知</a><a class="next" href="/2018/02/05/说明/GYM书写说明/">GitHub Flavored Markdown说明文档(GFM)</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论 「请确保 disqus.com 可以正常加载」</button></div><script>var disqus_shortname = 'oneforce-github-io';
+var disqus_identifier = '2018/02/05/说明/mermaid使用说明/';
+var disqus_title = 'mermaid使用说明';
+var disqus_url = 'https://oneforce.github.io/2018/02/05/说明/mermaid使用说明/';
+$('.btn_click_load').click(function() {
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  $('.btn_click_load').css('display','none');
+});
+$.ajax({
+  url: 'https://disqus.com/next/config.json',
+  timeout: 3000,
+  type: 'GET',
+  success: (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    $('.btn_click_load').css('display','none');
+  })(),
+  error: function() {
+    $('.btn_click_load').css('display','block');
+  }
+});</script><script id="dsq-count-scr" src="//oneforce-github-io.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"><input type="hidden" name="si" value="https://oneforce.github.io"><input name="tn" type="hidden" value="bds"><input name="cl" type="hidden" value="3"><input name="ct" type="hidden" value="2097152"><input name="s" type="hidden" value="on"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java-9-Revealed/">Java 9 Revealed</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Revealed/">Java Revealed</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot2/">SpringBoot2</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/参考文档/">参考文档</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/征信/">征信</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/私募基金/">私募基金</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资产管理/">资产管理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/金融法规/">金融法规</a><span class="category-list-count">15</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/入门系列/" style="font-size: 15px;">入门系列</a> <a href="/tags/tool/" style="font-size: 15px;">tool</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/合规/" style="font-size: 15px;">合规</a> <a href="/tags/征信/" style="font-size: 15px;">征信</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/utf8/" style="font-size: 15px;">utf8</a> <a href="/tags/字符集/" style="font-size: 15px;">字符集</a> <a href="/tags/上海/" style="font-size: 15px;">上海</a> <a href="/tags/汽车/" style="font-size: 15px;">汽车</a> <a href="/tags/读书笔记/" style="font-size: 15px;">读书笔记</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/svn/" style="font-size: 15px;">svn</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/金融/" style="font-size: 15px;">金融</a> <a href="/tags/上海市互联网金融行业协会/" style="font-size: 15px;">上海市互联网金融行业协会</a> <a href="/tags/网络借贷/" style="font-size: 15px;">网络借贷</a> <a href="/tags/P2P/" style="font-size: 15px;">P2P</a> <a href="/tags/金融办/" style="font-size: 15px;">金融办</a> <a href="/tags/2018/" style="font-size: 15px;">2018</a> <a href="/tags/指引/" style="font-size: 15px;">指引</a> <a href="/tags/电子合同存证/" style="font-size: 15px;">电子合同存证</a> <a href="/tags/金融科技/" style="font-size: 15px;">金融科技</a> <a href="/tags/银监会/" style="font-size: 15px;">银监会</a> <a href="/tags/资产管理/" style="font-size: 15px;">资产管理</a> <a href="/tags/现金贷/" style="font-size: 15px;">现金贷</a> <a href="/tags/Java9/" style="font-size: 15px;">Java9</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/stream/" style="font-size: 15px;">stream</a> <a href="/tags/long/" style="font-size: 15px;">long</a> <a href="/tags/Spring-Boot-2/" style="font-size: 15px;">Spring Boot 2</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/原则/" style="font-size: 15px;">原则</a> <a href="/tags/zookeeper/" style="font-size: 15px;">zookeeper</a> <a href="/tags/架构/" style="font-size: 15px;">架构</a> <a href="/tags/p2p/" style="font-size: 15px;">p2p</a> <a href="/tags/代收/" style="font-size: 15px;">代收</a> <a href="/tags/央行/" style="font-size: 15px;">央行</a> <a href="/tags/证监会/" style="font-size: 15px;">证监会</a> <a href="/tags/私募基金/" style="font-size: 15px;">私募基金</a> <a href="/tags/PE/" style="font-size: 15px;">PE</a> <a href="/tags/委托贷款/" style="font-size: 15px;">委托贷款</a> <a href="/tags/私募/" style="font-size: 15px;">私募</a> <a href="/tags/jshell/" style="font-size: 15px;">jshell</a> <a href="/tags/collection/" style="font-size: 15px;">collection</a> <a href="/tags/lambda/" style="font-size: 15px;">lambda</a> <a href="/tags/http-2/" style="font-size: 15px;">http/2</a> <a href="/tags/fabric/" style="font-size: 15px;">fabric</a> <a href="/tags/SVN/" style="font-size: 15px;">SVN</a> <a href="/tags/说明文档/" style="font-size: 15px;">说明文档</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/10/05/金融/促进金融科技发展 支持上海建设金融科技中心/">金融/促进金融科技发展 支持上海建设金融科技中心</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/05/技术杂项/字符集和字符编码/">技术杂项/字符集和字符编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/13/说明/常用正则/">常用正则</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/26/技术杂项/架构/架构在做什么1/">架构在做什么1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/02/金融/中国人民银行/中国人民银行关于规范代收业务的通知/">中国人民银行关于规范代收业务的通知 (征求意见稿)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/02/金融/中国人民银行/中国人民银行关于规范代收业务 的通知（征求意见稿）》主要问题说明/">《中国人民银行关于规范代收业务的通知（征求意见稿）》主要问题说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/21/找书途径及下载方法/">找书途径及下载方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/30/金融/促进金融科技发展支持上海建设金融科技中心/">促进金融科技发展 支持上海建设金融科技中心</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/25/技术杂项/spring/设置context-path不能被服务发现的问题/">设置context-path不能被服务发现的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/21/金融/关于办理非法放贷刑事案件若干问题的意见/">关于办理非法放贷刑事案件若干问题的意见</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//oneforce-github-io.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">oneforce blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = '//hm.baidu.com/hm.js?' + '718da94a7cf34af2eac95661ab1fc06f';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script>(function () {
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
